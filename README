@@ -1,0 +1,97 @@
+# 🏨 Hotel Automation Software
+
+A full-stack web application for hotel room reservation, billing, catering, and guest/admin management.
+
+---
+
+## 🔧 Backend (Flask)
+
+### 📂 Structure
+```
+hotel-automation/
+├── backend/
+│   ├── app.py
+│   ├── models.py
+│   ├── db_config.py
+│   ├── auth.py
+│   ├── routes/
+│   │   ├── guest.py
+│   │   ├── admin.py
+│   │   ├── billing.py
+│   │   ├── reservation.py
+│   │   └── catering.py
+│   └── utils/
+│       ├── pdf_generator.py
+│       └── auth_utils.py
+├── tests/
+│   └── test_all.py
+├── requirements.txt
+```
+
+### 🚀 Setup
+```bash
+cd hotel-automation
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+Create MySQL DB `hotel_automation`, then run:
+```python
+from backend import db_config
+app = db_config.create_app()
+with app.app_context():
+    from backend import models
+    models.db.create_all()
+```
+
+---
+
+## 🌐 Frontend (React + Tailwind)
+
+### 📂 Structure
+```
+frontend/
+├── public/
+├── src/
+│   ├── index.js
+│   ├── App.js
+│   └── pages/
+│       ├── LoginPage.js
+│       ├── GuestDashboard.js
+│       ├── AdminDashboard.js
+│       ├── RoomReservationPage.js
+│       ├── BillViewPage.js
+│       └── FoodOrderPage.js
+├── package.json
+```
+
+### 🚀 Setup
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+---
+
+## ✅ Features
+- Guest registration & login
+- Admin login (manual creation in DB)
+- Room reservation
+- Food ordering
+- Billing & PDF export
+- Admin dashboard (view guests, rooms, orders)
+- Unit tests using PyTest
+
+---
+
+## 🔐 Admin Creation Example
+```sql
+INSERT INTO Admin (name, username, password) VALUES ('Admin', 'admin', '<hashed_password>');
+```
+Use Python to hash password:
+```python
+from werkzeug.security import generate_password_hash
+print(generate_password_hash("yourpassword"))
+```
