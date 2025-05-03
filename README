@@ -90,8 +90,3 @@ npm run dev
 ```sql
 INSERT INTO Admin (name, username, password) VALUES ('Admin', 'admin', '<hashed_password>');
 ```
-Use Python to hash password:
-```python
-from werkzeug.security import generate_password_hash
-print(generate_password_hash("yourpassword"))
-```
